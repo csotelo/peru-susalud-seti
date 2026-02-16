@@ -12,6 +12,7 @@ from peru_susalud_seti.application.mappers import(
     TableD1Mapper,
     TableD2Mapper,
     TableEMapper,
+    TableFMapper,
     TableHMapper
 )
 
@@ -132,3 +133,15 @@ def test_table_h_mapper_success():
     }
     entity = TableHMapper.map_from_dict(raw_data)
     assert entity.total_interventions == 5
+
+def test_table_f_mapper_success():
+    """Valida mapeo de Tabla F (Vigilancia)."""
+    raw_data = {
+        "period": "202602",
+        "ipress_code": "00001234",
+        "surveillance_code": "I01", # Infección Herida Operatoria
+        "event_count": 3
+    }
+    entity = TableFMapper.map_from_dict(raw_data)
+    assert entity.surveillance_code == "I01"
+    assert entity.event_count == 3

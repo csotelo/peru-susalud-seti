@@ -7,8 +7,9 @@ from ..domain.models import (
     StayTableC2,
     EmergencyProductionD1,
     EmergencyMorbidityD2,
-    SurgeryTableH,
-    ChildbirthTableE
+    ChildbirthTableE,
+    SurveillanceTableF,
+    SurgeryTableH
 )
 
 class TableAMapper:
@@ -199,6 +200,40 @@ class TableD2Mapper:
             raise ValueError(f"Error en mapeo TablaD2: {str(e)}")
 
 
+class TableEMapper:
+    """Translates raw dictionary data into ChildbirthTableE entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ChildbirthTableE:
+        try:
+            return ChildbirthTableE(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                total_deliveries=int(data.get("total_deliveries", 0)),
+                complicated_deliveries=int(data.get("complicated_deliveries", 0)),
+                live_births=int(data.get("live_births", 0)),
+                still_births=int(data.get("still_births", 0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaE: {str(e)}")
+
+class TableFMapper:
+    """Translates raw dictionary data into SurveillanceTableF entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> SurveillanceTableF:
+        try:
+            return SurveillanceTableF(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                surveillance_code=str(data.get("surveillance_code", "")).strip().upper(),
+                event_count=int(data.get("event_count", 0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaF: {str(e)}")        
+
+
 class TableHMapper:
     """Translates raw dictionary data into SurgeryTableH entities."""
     @staticmethod
@@ -218,20 +253,3 @@ class TableHMapper:
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaH: {str(e)}")
-
-class TableEMapper:
-    """Translates raw dictionary data into ChildbirthTableE entities."""
-    @staticmethod
-    def map_from_dict(data: Dict[str, Any]) -> ChildbirthTableE:
-        try:
-            return ChildbirthTableE(
-                period=str(data.get("period", "")).strip(),
-                ipress_code=str(data.get("ipress_code", "")).strip(),
-                ugipress_code=str(data.get("ugipress_code", "")).strip(),
-                total_deliveries=int(data.get("total_deliveries", 0)),
-                complicated_deliveries=int(data.get("complicated_deliveries", 0)),
-                live_births=int(data.get("live_births", 0)),
-                still_births=int(data.get("still_births", 0))
-            )
-        except (ValueError, TypeError, AttributeError) as e:
-            raise ValueError(f"Error en mapeo TablaE: {str(e)}")

@@ -13,6 +13,7 @@ from peru_susalud_seti.domain.models import (
     EmergencyProductionD1,
     EmergencyMorbidityD2,
     ChildbirthTableE,
+    SurveillanceTableF,
     SurgeryTableH
 )
 
@@ -85,6 +86,10 @@ def test_writer_format_all_types():
             period="202602", ipress_code="12345678", ugipress_code="12345678",
             total_deliveries=50, complicated_deliveries=10,
             live_births=49, still_births=1
+        ),
+        SurveillanceTableF(
+            period="202602", ipress_code="12345678", ugipress_code="12345678",
+            ups_code="202201", surveillance_code="I02", event_count=2
         ),
         SurgeryTableH(
             period="202602", ipress_code="12345678", ugipress_code="12345678",

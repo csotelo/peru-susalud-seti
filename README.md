@@ -164,6 +164,17 @@ data_e = [{
 }]
 service.generate_table("E", data_e, "./output")
 
+# --- EJEMPLO TABLA F (Vigilancia Institucional) ---
+data_f = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "ups_code": "301101",        # UPS donde ocurrió el evento
+    "surveillance_code": "I01",  # Código del Indicador (Ej: Infección de Herida)
+    "event_count": 2             # Cantidad de eventos
+}]
+service.generate_table("F", data_f, "./output")
+
 # --- EJEMPLO TABLA H (Intervenciones Quirúrgicas) ---
 data_h = [{
     "period": "202602",
@@ -195,6 +206,7 @@ service.generate_table("H", data_h, "./output")
 | **D1** | Producción en Emergencias | Atenciones y turnos en la UPS de Emergencia. |
 | **D2** | Morbilidad en Emergencias | Diagnósticos (CIE-10) reportados en Emergencia. |
 | **E** | Partos | Reporte consolidado de partos y nacimientos (Vivos/Muertos). |
+| **F** | Vigilancia Institucional | Indicadores de seguridad, infecciones y eventos adversos. |
 | **H** | Intervenciones Quirúrgicas | Producción de sala de operaciones (Intervenciones). |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).

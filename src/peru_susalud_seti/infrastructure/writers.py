@@ -10,6 +10,7 @@ from ..domain.models import (
     EmergencyProductionD1,
     EmergencyMorbidityD2,
     ChildbirthTableE,
+    SurveillanceTableF,
     SurgeryTableH
 )
 
@@ -40,6 +41,8 @@ class SetiFileWriter:
             suffix = "TDD2"
         elif isinstance(record, ChildbirthTableE):
             suffix = "TEE0"
+        elif isinstance(record, SurveillanceTableF):
+            suffix = "TFF0"
         elif isinstance(record, SurgeryTableH):
             suffix = "THH0"
         else:
@@ -125,6 +128,12 @@ class SetiFileWriter:
                 record.period, record.ipress_code, record.ugipress_code,
                 str(record.total_deliveries), str(record.complicated_deliveries),
                 str(record.live_births), str(record.still_births)
+            ]
+        elif isinstance(record, SurveillanceTableF):
+            fields = [
+                record.period, record.ipress_code, record.ugipress_code,
+                record.ups_code, record.surveillance_code,
+                str(record.event_count)
             ]
         elif isinstance(record, SurgeryTableH):
             fields = [
