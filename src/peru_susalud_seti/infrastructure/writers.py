@@ -8,7 +8,8 @@ from ..domain.models import (
     InpatientTableC1,
     StayTableC2,
     EmergencyProductionD1,
-    EmergencyMorbidityD2
+    EmergencyMorbidityD2,
+    SurgeryTableH
 )
 
 class SetiFileWriter:
@@ -36,6 +37,8 @@ class SetiFileWriter:
             suffix = "TDD1"
         elif isinstance(record, EmergencyMorbidityD2):
             suffix = "TDD2"
+        elif isinstance(record, SurgeryTableH):
+            suffix = "THH0"
         else:
             raise ValueError(f"Tipo de entidad no soportado para escritura: {type(record)}")
 
@@ -113,5 +116,11 @@ class SetiFileWriter:
                 record.age_group, record.gender, record.icd10_code,
                 record.diagnosis_type, str(record.total_cases),
                 record.poverty_level, record.funding_source
+            ]
+        elif isinstance(record, SurgeryTableH):
+            fields = [
+                record.period, record.ipress_code, record.ugipress_code, record.ups_code,
+                record.age_group, record.gender, str(record.total_patients),
+                str(record.total_interventions), record.poverty_level, record.funding_source
             ]
         return "|".join(fields)

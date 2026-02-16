@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-02-16
+
+### Añadido
+- Soporte para **Tabla H (Intervenciones Quirúrgicas)**: Registro de producción en sala de operaciones según imagen de referencia.
+- Sufijo de archivo `THH0` implementado.
+
 ## [0.5.1] - 2026-02-16
 
 ### Corregido

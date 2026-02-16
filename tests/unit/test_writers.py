@@ -11,7 +11,8 @@ from peru_susalud_seti.domain.models import (
     InpatientTableC1,
     StayTableC2,
     EmergencyProductionD1,
-    EmergencyMorbidityD2
+    EmergencyMorbidityD2,
+    SurgeryTableH
 )
 
 def test_writer_unsupported_entity():
@@ -77,6 +78,12 @@ def test_writer_format_all_types():
             period="202602", ipress_code="12345678", ugipress_code="12345678",
             ups_code="301602", age_group="05", gender="1",
             icd10_code="A09", diagnosis_type="D", total_cases=5,
+            poverty_level="3", funding_source="4"
+        ),
+        SurgeryTableH(
+            period="202602", ipress_code="12345678", ugipress_code="12345678",
+            ups_code="301602", age_group="05", gender="1",
+            total_patients=3, total_interventions=3,
             poverty_level="3", funding_source="4"
         )
     ]

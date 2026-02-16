@@ -154,6 +154,21 @@ data_d2 = [{
 }]
 service.generate_table("D2", data_d2, "./output")
 
+# --- EJEMPLO TABLA H (Intervenciones Quirúrgicas) ---
+data_h = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "ups_code": "202201", # UPS Centro Quirúrgico
+    "age_group": "06",
+    "gender": "2",
+    "total_patients": 5,
+    "total_interventions": 7, # Pacientes pueden tener más de 1 intervención
+    "poverty_level": "3",
+    "funding_source": "4"
+}]
+service.generate_table("H", data_h, "./output")
+
 ```
 
 ---
@@ -169,6 +184,7 @@ service.generate_table("D2", data_d2, "./output")
 | **C2** | Estancia Hospitalaria | Días-estancia y permanencia de pacientes internados. |
 | **D1** | Producción en Emergencias | Atenciones y turnos en la UPS de Emergencia. |
 | **D2** | Morbilidad en Emergencias | Diagnósticos (CIE-10) reportados en Emergencia. |
+| **H** | Intervenciones Quirúrgicas | Producción de sala de operaciones (Intervenciones). |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).
 

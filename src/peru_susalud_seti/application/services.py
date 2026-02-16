@@ -8,7 +8,8 @@ from .mappers import (
     TableC1Mapper,
     TableC2Mapper,
     TableD1Mapper,
-    TableD2Mapper
+    TableD2Mapper,
+    TableHMapper
 )
 
 class SetiGenerationService(Subject):
@@ -28,7 +29,8 @@ class SetiGenerationService(Subject):
             "C1": TableC1Mapper.map_from_dict,
             "C2": TableC2Mapper.map_from_dict,
             "D1": TableD1Mapper.map_from_dict,
-            "D2": TableD2Mapper.map_from_dict
+            "D2": TableD2Mapper.map_from_dict,
+            "H": TableHMapper.map_from_dict
         }
 
     def generate_table(self, table_id: str, raw_data: List[Dict[str, Any]], output_dir: str) -> str:

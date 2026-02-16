@@ -131,3 +131,20 @@ class EmergencyMorbidityD2:
     total_cases: int      # Cantidad de casos reportados
     poverty_level: str
     funding_source: str
+
+
+@dataclass(frozen=True)
+class SurgeryTableH:
+    """
+    Represents Table H: Surgical Interventions (Intervenciones Quirúrgicas).
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    ups_code: str
+    age_group: str
+    gender: str
+    total_patients: int
+    total_interventions: int # Cantidad de intervenciones realizadas
+    poverty_level: str
+    funding_source: str

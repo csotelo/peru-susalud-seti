@@ -5,8 +5,9 @@ from ..domain.models import (
     EmergencyTableB2,
     InpatientTableC1,
     StayTableC2,
-    ResourceAvailabilityD1,
-    ShiftProgrammingD2
+    EmergencyProductionD1,
+    EmergencyMorbidityD2,
+    SurgeryTableH
 )
 
 class TableAMapper:
@@ -195,3 +196,24 @@ class TableD2Mapper:
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaD2: {str(e)}")
+
+
+class TableHMapper:
+    """Translates raw dictionary data into SurgeryTableH entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> SurgeryTableH:
+        try:
+            return SurgeryTableH(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_interventions=int(data.get("total_interventions", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4"))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaH: {str(e)}")
