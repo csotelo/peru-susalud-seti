@@ -1,7 +1,15 @@
 from typing import List, Dict, Any
 from ..domain.types import Subject
 from ..infrastructure.writers import SetiFileWriter
-from .mappers import TableAMapper, TableB1Mapper, TableB2Mapper
+from .mappers import (
+    TableAMapper, 
+    TableB1Mapper, 
+    TableB2Mapper,
+    TableC1Mapper,
+    TableC2Mapper,
+    TableD1Mapper,
+    TableD2Mapper
+)
 
 class SetiGenerationService(Subject):
     """
@@ -16,7 +24,11 @@ class SetiGenerationService(Subject):
         self._mappers = {
             "A": TableAMapper.map_from_dict,
             "B1": TableB1Mapper.map_from_dict,
-            "B2": TableB2Mapper.map_from_dict
+            "B2": TableB2Mapper.map_from_dict,
+            "C1": TableC1Mapper.map_from_dict,
+            "C2": TableC2Mapper.map_from_dict,
+            "D1": TableD1Mapper.map_from_dict,
+            "D2": TableD2Mapper.map_from_dict
         }
 
     def generate_table(self, table_id: str, raw_data: List[Dict[str, Any]], output_dir: str) -> str:

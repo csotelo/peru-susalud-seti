@@ -1,6 +1,13 @@
 from typing import Dict, Any
-from ..domain.models import HealthResourceTableA
-from ..domain.models import OutpatientTableB1, EmergencyTableB2
+from ..domain.models import (
+    HealthResourceTableA,
+    OutpatientTableB1, 
+    EmergencyTableB2,
+    InpatientTableC1,
+    StayTableC2,
+    ResourceAvailabilityD1,
+    ShiftProgrammingD2
+)
 
 class TableAMapper:
     """
@@ -99,3 +106,89 @@ class TableB2Mapper:
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaB2: {str(e)}")
+
+
+class TableC1Mapper:
+    """
+    Translates raw dictionary data into InpatientTableC1 entities.
+    """
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> InpatientTableC1:
+        try:
+            return InpatientTableC1(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_appointments=int(data.get("total_appointments", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4")),
+                exit_type=str(data.get("exit_type", "1"))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaC1: {str(e)}")
+
+class TableC2Mapper:
+    """
+    Translates raw dictionary data into StayTableC2 entities.
+    """
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> StayTableC2:
+        try:
+            return StayTableC2(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_appointments=int(data.get("total_appointments", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4")),
+                stay_days=int(data.get("stay_days", 0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaC2: {str(e)}")
+
+
+class TableD1Mapper:
+    """Translates raw dictionary data into ResourceAvailabilityD1 entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ResourceAvailabilityD1:
+        try:
+            return ResourceAvailabilityD1(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                document_type=str(data.get("document_type", "1")),
+                document_number=str(data.get("document_number", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                asistencial_hours=int(data.get("asistencial_hours", 0)),
+                administrative_hours=int(data.get("administrative_hours", 0)),
+                other_hours=int(data.get("other_hours", 0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaD1: {str(e)}")
+
+class TableD2Mapper:
+    """Translates raw dictionary data into ShiftProgrammingD2 entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ShiftProgrammingD2:
+        try:
+            return ShiftProgrammingD2(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                document_type=str(data.get("document_type", "1")),
+                document_number=str(data.get("document_number", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                shift_date=str(data.get("shift_date", "")).strip(),
+                shift_type=str(data.get("shift_type", "M")),
+                hours_count=int(data.get("hours_count", 0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaD2: {str(e)}")

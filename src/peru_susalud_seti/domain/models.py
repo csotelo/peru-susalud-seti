@@ -81,3 +81,48 @@ class EmergencyTableB2(BaseProductionTable):
     """
     priority: str
     destination: str
+
+@dataclass(frozen=True)
+class InpatientTableC1(BaseProductionTable):
+    """
+    Represents Table C1: Hospital Discharges (Egresos).
+    """
+    exit_type: str # Alta, Fallecido, Referido, etc.
+
+@dataclass(frozen=True)
+class StayTableC2(BaseProductionTable):
+    """
+    Represents Table C2: Hospital Stay (Estancia).
+    """
+    stay_days: int # Total de días estancia en el periodo
+
+
+@dataclass(frozen=True)
+class ResourceAvailabilityD1:
+    """
+    Represents Table D1: Human Resources Availability (Hours).
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    document_type: str # 1: DNI, 2: CE, etc.
+    document_number: str
+    ups_code: str
+    asistencial_hours: int
+    administrative_hours: int
+    other_hours: int
+
+@dataclass(frozen=True)
+class ShiftProgrammingD2:
+    """
+    Represents Table D2: Shift Programming.
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    document_type: str
+    document_number: str
+    ups_code: str
+    shift_date: str # AAAAMMDD
+    shift_type: str # M, T, N, G
+    hours_count: int
