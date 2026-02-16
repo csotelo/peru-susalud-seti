@@ -46,3 +46,38 @@ class HealthResourceTableA:
                 value = getattr(self, field.name)
                 if value < 0:
                     raise ValueError(f"El campo '{field.name}' no puede ser negativo: {value}")
+
+
+@dataclass(frozen=True)
+class BaseProductionTable:
+    """
+    Base class for SETI-IPRESS production tables.
+    Contains common fields for B1 and B2 tables.
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    ups_code: str
+    age_group: str
+    gender: str
+    total_patients: int
+    total_appointments: int
+    poverty_level: str
+    funding_source: str
+
+@dataclass(frozen=True)
+class OutpatientTableB1(BaseProductionTable):
+    """
+    Represents Table B1: Outpatient Consultation Production.
+    Fields match the official SUSALUD structure for TBB1.
+    """
+    pass
+
+@dataclass(frozen=True)
+class EmergencyTableB2(BaseProductionTable):
+    """
+    Represents Table B2: Emergency Services Production.
+    Adds priority and destination fields as per SUSALUD specs.
+    """
+    priority: str
+    destination: str

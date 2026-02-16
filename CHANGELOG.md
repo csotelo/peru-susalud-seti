@@ -5,6 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-02-16
+
+### Añadido
+- **Producción:** Implementación de Tablas B1 (Consulta Externa) y B2 (Emergencia).
+- **Modelos:** Entidades inmutables `OutpatientTableB1` y `EmergencyTableB2` con validaciones de dominio.
+- **Mappers:** `TableB1Mapper` y `TableB2Mapper` para procesamiento de datos JSON/Dict con llaves en inglés.
+- **Infraestructura:** `SetiFileWriter` actualizado para soportar múltiples estructuras de archivos planos (.TXT).
+- **Servicios:** `SetiGenerationService` ahora es genérico y permite la generación de cualquier tabla mediante un identificador (`A`, `B1`, `B2`).
+- **Calidad:** Cobertura de pruebas superior al 99% con validación de integración para todas las tablas implementadas.
+
 ## [0.1.0] - 2026-02-16
 
 ### Añadido

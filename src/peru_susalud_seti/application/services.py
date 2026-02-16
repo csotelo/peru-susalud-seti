@@ -1,58 +1,47 @@
 from typing import List, Dict, Any
 from ..domain.types import Subject
-from ..domain.models import HealthResourceTableA
 from ..infrastructure.writers import SetiFileWriter
-from .mappers import TableAMapper
+from .mappers import TableAMapper, TableB1Mapper, TableB2Mapper
 
-class TableAGenerationService(Subject):
+class SetiGenerationService(Subject):
     """
-    Main Use Case: Orchestrates the conversion from Raw Data -> Domain -> TXT File.
-    Implements the Observer pattern to notify subscribers about the process.
+    Orchestrates the generation of multiple SUSALUD tables.
+    Uses a mapping strategy to remain open for new table types.
     """
 
     def __init__(self):
         super().__init__()
         self._writer = SetiFileWriter()
+        # Strategy pattern for mappers
+        self._mappers = {
+            "A": TableAMapper.map_from_dict,
+            "B1": TableB1Mapper.map_from_dict,
+            "B2": TableB2Mapper.map_from_dict
+        }
 
-    def process_data(self, raw_data: List[Dict[str, Any]], output_folder: str) -> str:
+    def generate_table(self, table_id: str, raw_data: List[Dict[str, Any]], output_dir: str) -> str:
         """
-        Process a list of dictionaries and generates the SUSALUD Table A file.
-
-        Args:
-            raw_data: List of dictionaries (parsed JSON).
-            output_folder: Path to save the generated file.
-
-        Returns:
-            The path of the generated file.
+        Validates and generates a specific TXT table from JSON-like data.
         """
-        valid_records: List[HealthResourceTableA] = []
+        if table_id not in self._mappers:
+            raise ValueError(f"La tabla {table_id} no está soportada actualmente.")
+
+        self.notify("START", f"Iniciando proceso para Tabla {table_id}")
         
-        self.notify("START", "Iniciando proceso de generación para Tabla A.")
+        mapper_func = self._mappers[table_id]
+        validated_records = []
 
-        for index, row in enumerate(raw_data):
+        for index, item in enumerate(raw_data):
             try:
-                # 1. Map and Validate (Domain constraints applied here)
-                entity = TableAMapper.map_from_dict(row)
-                valid_records.append(entity)
-                
-            except ValueError as e:
-                # Notify error but don't stop strictly unless desired? 
-                # For strict compliance, one error usually invalidates the file.
-                # Here we allow skipping but notify.
+                entity = mapper_func(item)
+                validated_records.append(entity)
+            except Exception as e:
                 self.notify("ERROR", f"Fila {index + 1}: {str(e)}")
-                # Depending on strictness, you might want to: raise e
 
-        if not valid_records:
-            error_msg = "No se encontraron registros válidos para generar la trama."
-            self.notify("CRITICAL", error_msg)
-            raise ValueError(error_msg)
+        if not validated_records:
+            raise ValueError(f"No hay registros válidos para la Tabla {table_id}")
 
-        try:
-            # 2. Write File
-            file_path = self._writer.write_table_a(valid_records, output_folder)
-            self.notify("SUCCESS", f"Archivo generado exitosamente en: {file_path}")
-            return file_path
-            
-        except Exception as e:
-            self.notify("CRITICAL", f"Error escribiendo archivo: {str(e)}")
-            raise
+        file_path = self._writer.write_records(validated_records, output_dir)
+        self.notify("SUCCESS", f"Archivo {table_id} generado en {file_path}")
+        
+        return file_path

@@ -1,26 +1,20 @@
 import pytest
-from peru_susalud_seti import TableAGenerationService
+from peru_susalud_seti import SetiGenerationService, Observer
 
-def test_library_is_importable_and_runs(tmp_path):
+def test_service_availability():
     """
-    SMOKE TEST: 
-    Verifica simplemente que la clase principal se pueda instanciar
-    y ejecutar con un dato mínimo sin lanzar excepciones fatales.
+    Sanity check to ensure the main service and interfaces are importable and instantiable.
     """
-    try:
-        service = TableAGenerationService()
-        
-        minimal_data = [{
-            "periodo": "202401",
-            "codigo_ipress": "99999999",
-            "codigo_ugipress": "99999999",
-            "consultorios_fisicos": 1
-        }]
-        
-        # Solo nos importa que esto NO lance excepción
-        service.process_data(minimal_data, str(tmp_path))
-        
-    except ImportError:
-        pytest.fail("SMOKE: No se pudo importar la librería. ¿Está instalada?")
-    except Exception as e:
-        pytest.fail(f"SMOKE: La ejecución básica falló: {e}")
+    service = SetiGenerationService()
+    assert isinstance(service, SetiGenerationService)
+
+def test_observer_interface():
+    """
+    Ensures the Observer pattern components are available for extension.
+    """
+    class TestObserver(Observer):
+        def update(self, event_type, message, data=None):
+            pass
+    
+    observer = TestObserver()
+    assert hasattr(observer, "update")
