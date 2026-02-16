@@ -14,7 +14,9 @@ from peru_susalud_seti.application.mappers import(
     TableEMapper,
     TableFMapper,
     TableGMapper,
-    TableHMapper
+    TableHMapper,
+    TableIMapper,
+    TableJMapper
 )
 
 def test_table_a_mapper_success():
@@ -158,3 +160,21 @@ def test_table_h_mapper_success():
     }
     entity = TableHMapper.map_from_dict(raw_data)
     assert entity.total_interventions == 5
+
+def test_table_i_mapper_success():
+    """Valida mapeo de Tabla I (Referencias)."""
+    raw_data = {"period": "202602", "ipress_code": "00001234", "total_referrals": 8}
+    entity = TableIMapper.map_from_dict(raw_data)
+    assert entity.total_referrals == 8
+
+def test_table_j_mapper_success():
+    """Valida mapeo de Tabla J (Gastos)."""
+    raw_data = {
+        "period": "202602", 
+        "ipress_code": "00001234", 
+        "budget_category": "2.3",
+        "executed_amount": "1500.50"
+    }
+    entity = TableJMapper.map_from_dict(raw_data)
+    assert entity.executed_amount == 1500.50
+    assert entity.budget_category == "2.3"

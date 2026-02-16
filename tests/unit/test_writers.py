@@ -15,7 +15,9 @@ from peru_susalud_seti.domain.models import (
     ChildbirthTableE,
     SurveillanceTableF,
     ProceduresTableG,
-    SurgeryTableH
+    SurgeryTableH,
+    ReferralTableI,
+    ExpenditureTableJ
 )
 
 def test_writer_unsupported_entity():
@@ -103,6 +105,16 @@ def test_writer_format_all_types():
             ups_code="301602", age_group="05", gender="1",
             total_patients=3, total_interventions=3,
             poverty_level="3", funding_source="4"
+        ),
+        ReferralTableI(
+            period="202602", ipress_code="12345678", ugipress_code="12345678",
+            ups_code="301602", age_group="05", gender="2",
+            total_patients=5, total_referrals=5,
+            poverty_level="3", funding_source="4"
+        ),
+        ExpenditureTableJ(
+            period="202602", ipress_code="12345678", ugipress_code="12345678",
+            funding_source="1", budget_category="2.3.1", executed_amount=5000.00
         )
     ]
     

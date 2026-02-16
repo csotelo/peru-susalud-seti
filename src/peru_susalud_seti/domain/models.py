@@ -192,3 +192,33 @@ class SurgeryTableH:
     total_interventions: int # Cantidad de intervenciones realizadas
     poverty_level: str
     funding_source: str
+
+@dataclass(frozen=True)
+class ReferralTableI:
+    """
+    Represents Table I: Referrals (Referencias y Contrarreferencias).
+    Reports patients sent to other institutions.
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    ups_code: str           # UPS que origina la referencia
+    age_group: str
+    gender: str
+    total_patients: int
+    total_referrals: int    # Cantidad de hojas de referencia generadas
+    poverty_level: str
+    funding_source: str
+
+@dataclass(frozen=True)
+class ExpenditureTableJ:
+    """
+    Represents Table J: Budget Execution (Gastos).
+    Reports financial execution by category.
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    funding_source: str      # Fuente de Financiamiento (Ej. RDR, RO)
+    budget_category: str     # Genérica de Gasto (Ej. 2.3 Bienes y Servicios)
+    executed_amount: float   # Monto devengado/girado

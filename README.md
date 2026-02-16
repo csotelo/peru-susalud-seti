@@ -204,6 +204,31 @@ data_h = [{
     "funding_source": "4"
 }]
 service.generate_table("H", data_h, "./output")
+# --- EJEMPLO TABLA I (Referencias) ---
+data_i = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "ups_code": "301602", # Emergencia
+    "age_group": "06",
+    "gender": "2",
+    "total_patients": 3,
+    "total_referrals": 3, # Pacientes derivados a otro hospital
+    "poverty_level": "3",
+    "funding_source": "4"
+}]
+service.generate_table("I", data_i, "./output")
+
+# --- EJEMPLO TABLA J (Gastos / Ejecución Presupuestal) ---
+data_j = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "funding_source": "2",     # Recursos Directamente Recaudados
+    "budget_category": "2.3",  # Bienes y Servicios
+    "executed_amount": 12500.50
+}]
+service.generate_table("J", data_j, "./output")
 
 ```
 
@@ -224,6 +249,8 @@ service.generate_table("H", data_h, "./output")
 | **F** | Vigilancia Institucional | Indicadores de seguridad, infecciones y eventos adversos. |
 | **G** | Producción de Procedimientos | Apoyo al diagnóstico (Laboratorio, Rayos X, etc.). |
 | **H** | Intervenciones Quirúrgicas | Producción de sala de operaciones (Intervenciones). |
+| **I** | Referencias | Pacientes referidos a otras instituciones. |
+| **J** | Gastos (Ejecución) | Ejecución presupuestal por genérica de gasto. |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).
 

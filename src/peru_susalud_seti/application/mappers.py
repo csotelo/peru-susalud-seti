@@ -9,7 +9,10 @@ from ..domain.models import (
     EmergencyMorbidityD2,
     ChildbirthTableE,
     SurveillanceTableF,
-    SurgeryTableH
+    ProceduresTableG,
+    SurgeryTableH,
+    ReferralTableI,
+    ExpenditureTableJ
 )
 
 class TableAMapper:
@@ -272,3 +275,39 @@ class TableHMapper:
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaH: {str(e)}")
+
+class TableIMapper:
+    """Translates raw dictionary data into ReferralTableI entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ReferralTableI:
+        try:
+            return ReferralTableI(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_referrals=int(data.get("total_referrals", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4"))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaI: {str(e)}")
+
+class TableJMapper:
+    """Translates raw dictionary data into ExpenditureTableJ entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ExpenditureTableJ:
+        try:
+            return ExpenditureTableJ(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                funding_source=str(data.get("funding_source", "1")),
+                budget_category=str(data.get("budget_category", "")).strip(),
+                executed_amount=float(data.get("executed_amount", 0.0))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaJ: {str(e)}")    

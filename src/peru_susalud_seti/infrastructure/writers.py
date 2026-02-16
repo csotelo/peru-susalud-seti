@@ -12,7 +12,9 @@ from ..domain.models import (
     ChildbirthTableE,
     SurveillanceTableF,
     ProceduresTableG,
-    SurgeryTableH
+    SurgeryTableH,
+    ReferralTableI,
+    ExpenditureTableJ
 )
 
 class SetiFileWriter:
@@ -48,6 +50,10 @@ class SetiFileWriter:
             suffix = "TGG0"
         elif isinstance(record, SurgeryTableH):
             suffix = "THH0"
+        elif isinstance(record, ReferralTableI):
+            suffix = "TII0"
+        elif isinstance(record, ExpenditureTableJ):
+            suffix = "TJJ0"
         else:
             raise ValueError(f"Tipo de entidad no soportado para escritura: {type(record)}")
 
@@ -149,5 +155,17 @@ class SetiFileWriter:
                 record.period, record.ipress_code, record.ugipress_code, record.ups_code,
                 record.age_group, record.gender, str(record.total_patients),
                 str(record.total_interventions), record.poverty_level, record.funding_source
+            ]
+        elif isinstance(record, ReferralTableI):
+            fields = [
+                record.period, record.ipress_code, record.ugipress_code, record.ups_code,
+                record.age_group, record.gender, str(record.total_patients),
+                str(record.total_referrals), record.poverty_level, record.funding_source
+            ]
+        elif isinstance(record, ExpenditureTableJ):
+            fields = [
+                record.period, record.ipress_code, record.ugipress_code,
+                record.funding_source, record.budget_category,
+                f"{record.executed_amount:.2f}" # Formato decimal a 2 dígitos
             ]
         return "|".join(fields)
