@@ -10,6 +10,7 @@ from peru_susalud_seti import SetiGenerationService
     ("C2", {"period": "202602", "ipress_code": "00001234", "stay_days": 10}, "TCC2"),
     ("D1", {"period": "202602", "ipress_code": "12345678", "document_number": "10203040"}, "TDD1"),
     ("D2", {"period": "202602", "ipress_code": "12345678", "shift_date": "20260210"}, "TDD2"),
+    ("E", {"period": "202602", "ipress_code": "12345678", "total_deliveries": 10}, "TEE0"),
     ("H", {"period": "202602", "ipress_code": "12345678", "total_interventions": 3}, "THH0"),
 ])
 def test_table_generation_flow(tmp_path, table_id, raw_row, expected_suffix):

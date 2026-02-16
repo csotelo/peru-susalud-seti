@@ -148,3 +148,18 @@ class SurgeryTableH:
     total_interventions: int # Cantidad de intervenciones realizadas
     poverty_level: str
     funding_source: str
+
+
+@dataclass(frozen=True)
+class ChildbirthTableE:
+    """
+    Represents Table E: Consolidated Childbirth Report (Partos).
+    Aggregated monthly data (not patient-level).
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    total_deliveries: int       # Total de partos atendidos
+    complicated_deliveries: int # Partos distócicos / cesáreas
+    live_births: int            # Nacidos vivos
+    still_births: int           # Nacidos muertos (óbito fetal)

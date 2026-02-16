@@ -11,6 +11,7 @@ from peru_susalud_seti.application.mappers import(
     TableC2Mapper,
     TableD1Mapper,
     TableD2Mapper,
+    TableEMapper,
     TableHMapper
 )
 
@@ -107,6 +108,20 @@ def test_table_d2_mapper_success():
     assert entity.icd10_code == "R10"
     assert entity.diagnosis_type == "P"
     assert entity.total_cases == 5
+
+def test_table_e_mapper_success():
+    """Valida mapeo de Tabla E (Partos Consolidado)."""
+    raw_data = {
+        "period": "202602",
+        "ipress_code": "00001234",
+        "total_deliveries": 100,
+        "complicated_deliveries": 20,
+        "live_births": 98,
+        "still_births": 2
+    }
+    entity = TableEMapper.map_from_dict(raw_data)
+    assert entity.total_deliveries == 100
+    assert entity.still_births == 2
 
 def test_table_h_mapper_success():
     """Valida mapeo de Tabla H (Quirúrgica)."""

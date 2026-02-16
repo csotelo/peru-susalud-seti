@@ -5,6 +5,13 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-02-16
+
+### Añadido
+- Soporte para **Tabla E (Partos)**: Reporte consolidado de partos y nacimientos.
+- Sufijo oficial `TEE0`.
+- Mapeo de campos: Total partos, partos complicados, nacidos vivos y nacidos muertos.
+
 ## [0.6.0] - 2026-02-16
 
 ### Añadido

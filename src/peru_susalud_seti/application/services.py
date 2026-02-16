@@ -9,6 +9,7 @@ from .mappers import (
     TableC2Mapper,
     TableD1Mapper,
     TableD2Mapper,
+    TableEMapper,
     TableHMapper
 )
 
@@ -30,6 +31,7 @@ class SetiGenerationService(Subject):
             "C2": TableC2Mapper.map_from_dict,
             "D1": TableD1Mapper.map_from_dict,
             "D2": TableD2Mapper.map_from_dict,
+            "E": TableEMapper.map_from_dict,
             "H": TableHMapper.map_from_dict
         }
 

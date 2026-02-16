@@ -122,7 +122,6 @@ data_c2 = [{
 service.generate_table("C2", data_c2, "./output")
 
 # --- EJEMPLO TABLA D1 (Producción en Emergencias) ---
-# Reporta el volumen de atenciones en la UPS de Emergencia
 data_d1 = [{
     "period": "202602",
     "ipress_code": "00001234",
@@ -138,7 +137,6 @@ data_d1 = [{
 service.generate_table("D1", data_d1, "./output")
 
 # --- EJEMPLO TABLA D2 (Morbilidad en Emergencias) ---
-# Reporta los diagnósticos (CIE-10) atendidos en Emergencia
 data_d2 = [{
     "period": "202602",
     "ipress_code": "00001234",
@@ -153,6 +151,18 @@ data_d2 = [{
     "funding_source": "4"
 }]
 service.generate_table("D2", data_d2, "./output")
+
+# --- EJEMPLO TABLA E (Partos - Consolidado) ---
+data_e = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "total_deliveries": 50,       # Total de partos atendidos
+    "complicated_deliveries": 10, # De los cuales, cuántos fueron complicados/cesáreas
+    "live_births": 48,            # Total nacidos vivos
+    "still_births": 2             # Total nacidos muertos
+}]
+service.generate_table("E", data_e, "./output")
 
 # --- EJEMPLO TABLA H (Intervenciones Quirúrgicas) ---
 data_h = [{
@@ -184,6 +194,7 @@ service.generate_table("H", data_h, "./output")
 | **C2** | Estancia Hospitalaria | Días-estancia y permanencia de pacientes internados. |
 | **D1** | Producción en Emergencias | Atenciones y turnos en la UPS de Emergencia. |
 | **D2** | Morbilidad en Emergencias | Diagnósticos (CIE-10) reportados en Emergencia. |
+| **E** | Partos | Reporte consolidado de partos y nacimientos (Vivos/Muertos). |
 | **H** | Intervenciones Quirúrgicas | Producción de sala de operaciones (Intervenciones). |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).

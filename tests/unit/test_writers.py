@@ -12,6 +12,7 @@ from peru_susalud_seti.domain.models import (
     StayTableC2,
     EmergencyProductionD1,
     EmergencyMorbidityD2,
+    ChildbirthTableE,
     SurgeryTableH
 )
 
@@ -79,6 +80,11 @@ def test_writer_format_all_types():
             ups_code="301602", age_group="05", gender="1",
             icd10_code="A09", diagnosis_type="D", total_cases=5,
             poverty_level="3", funding_source="4"
+        ),
+        ChildbirthTableE(
+            period="202602", ipress_code="12345678", ugipress_code="12345678",
+            total_deliveries=50, complicated_deliveries=10,
+            live_births=49, still_births=1
         ),
         SurgeryTableH(
             period="202602", ipress_code="12345678", ugipress_code="12345678",
