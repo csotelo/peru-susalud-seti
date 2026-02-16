@@ -98,31 +98,36 @@ class StayTableC2(BaseProductionTable):
 
 
 @dataclass(frozen=True)
-class ResourceAvailabilityD1:
+class EmergencyProductionD1:
     """
-    Represents Table D1: Human Resources Availability (Hours).
+    Represents Table D1: Emergency Production.
+    Focuses on the volume of care (patients and appointments) in Emergency UPS.
     """
     period: str
     ipress_code: str
     ugipress_code: str
-    document_type: str # 1: DNI, 2: CE, etc.
-    document_number: str
     ups_code: str
-    asistencial_hours: int
-    administrative_hours: int
-    other_hours: int
+    age_group: str
+    gender: str
+    total_patients: int
+    total_appointments: int
+    poverty_level: str
+    funding_source: str
 
 @dataclass(frozen=True)
-class ShiftProgrammingD2:
+class EmergencyMorbidityD2:
     """
-    Represents Table D2: Shift Programming.
+    Represents Table D2: Emergency Morbidity.
+    Focuses on the causes of care (ICD-10 diagnoses).
     """
     period: str
     ipress_code: str
     ugipress_code: str
-    document_type: str
-    document_number: str
     ups_code: str
-    shift_date: str # AAAAMMDD
-    shift_type: str # M, T, N, G
-    hours_count: int
+    age_group: str
+    gender: str
+    icd10_code: str       # Código CIE-10 (3 o 4 caracteres)
+    diagnosis_type: str   # P (Presuntivo), D (Definitivo), R (Repetido)
+    total_cases: int      # Cantidad de casos reportados
+    poverty_level: str
+    funding_source: str

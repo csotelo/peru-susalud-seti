@@ -156,39 +156,42 @@ class TableC2Mapper:
 
 
 class TableD1Mapper:
-    """Translates raw dictionary data into ResourceAvailabilityD1 entities."""
+    """Translates raw dictionary data into EmergencyProductionD1 entities."""
     @staticmethod
-    def map_from_dict(data: Dict[str, Any]) -> ResourceAvailabilityD1:
+    def map_from_dict(data: Dict[str, Any]) -> EmergencyProductionD1:
         try:
-            return ResourceAvailabilityD1(
+            return EmergencyProductionD1(
                 period=str(data.get("period", "")).strip(),
                 ipress_code=str(data.get("ipress_code", "")).strip(),
                 ugipress_code=str(data.get("ugipress_code", "")).strip(),
-                document_type=str(data.get("document_type", "1")),
-                document_number=str(data.get("document_number", "")).strip(),
                 ups_code=str(data.get("ups_code", "")).strip(),
-                asistencial_hours=int(data.get("asistencial_hours", 0)),
-                administrative_hours=int(data.get("administrative_hours", 0)),
-                other_hours=int(data.get("other_hours", 0))
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_appointments=int(data.get("total_appointments", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4"))
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaD1: {str(e)}")
 
 class TableD2Mapper:
-    """Translates raw dictionary data into ShiftProgrammingD2 entities."""
+    """Translates raw dictionary data into EmergencyMorbidityD2 entities."""
     @staticmethod
-    def map_from_dict(data: Dict[str, Any]) -> ShiftProgrammingD2:
+    def map_from_dict(data: Dict[str, Any]) -> EmergencyMorbidityD2:
         try:
-            return ShiftProgrammingD2(
+            return EmergencyMorbidityD2(
                 period=str(data.get("period", "")).strip(),
                 ipress_code=str(data.get("ipress_code", "")).strip(),
                 ugipress_code=str(data.get("ugipress_code", "")).strip(),
-                document_type=str(data.get("document_type", "1")),
-                document_number=str(data.get("document_number", "")).strip(),
                 ups_code=str(data.get("ups_code", "")).strip(),
-                shift_date=str(data.get("shift_date", "")).strip(),
-                shift_type=str(data.get("shift_type", "M")),
-                hours_count=int(data.get("hours_count", 0))
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                icd10_code=str(data.get("icd10_code", "")).strip().upper(),
+                diagnosis_type=str(data.get("diagnosis_type", "D")).upper(),
+                total_cases=int(data.get("total_cases", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4"))
             )
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaD2: {str(e)}")

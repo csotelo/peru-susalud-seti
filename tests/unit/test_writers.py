@@ -10,8 +10,8 @@ from peru_susalud_seti.domain.models import (
     EmergencyTableB2, 
     InpatientTableC1,
     StayTableC2,
-    ResourceAvailabilityD1,
-    ShiftProgrammingD2
+    EmergencyProductionD1,
+    EmergencyMorbidityD2
 )
 
 def test_writer_unsupported_entity():
@@ -67,15 +67,17 @@ def test_writer_format_all_types():
             total_patients=5, total_appointments=5,
             poverty_level="3", funding_source="4", stay_days=15
         ),
-        ResourceAvailabilityD1(
+        EmergencyProductionD1(
             period="202602", ipress_code="12345678", ugipress_code="12345678",
-            document_type="1", document_number="44556677", ups_code="301601",
-            asistencial_hours=150, administrative_hours=10, other_hours=0
+            ups_code="301602", age_group="05", gender="1",
+            total_patients=10, total_appointments=10,
+            poverty_level="3", funding_source="4"
         ),
-        ShiftProgrammingD2(
+        EmergencyMorbidityD2(
             period="202602", ipress_code="12345678", ugipress_code="12345678",
-            document_type="1", document_number="44556677", ups_code="301601",
-            shift_date="20260215", shift_type="M", hours_count=6
+            ups_code="301602", age_group="05", gender="1",
+            icd10_code="A09", diagnosis_type="D", total_cases=5,
+            poverty_level="3", funding_source="4"
         )
     ]
     

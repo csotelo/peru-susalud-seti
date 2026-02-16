@@ -7,8 +7,8 @@ from ..domain.models import (
     EmergencyTableB2,
     InpatientTableC1,
     StayTableC2,
-    ResourceAvailabilityD1,
-    ShiftProgrammingD2
+    EmergencyProductionD1,
+    EmergencyMorbidityD2
 )
 
 class SetiFileWriter:
@@ -32,9 +32,9 @@ class SetiFileWriter:
             suffix = "TCC1"
         elif isinstance(record, StayTableC2):
             suffix = "TCC2"
-        elif isinstance(record, ResourceAvailabilityD1):
+        elif isinstance(record, EmergencyProductionD1):
             suffix = "TDD1"
-        elif isinstance(record, ShiftProgrammingD2):
+        elif isinstance(record, EmergencyMorbidityD2):
             suffix = "TDD2"
         else:
             raise ValueError(f"Tipo de entidad no soportado para escritura: {type(record)}")
@@ -101,17 +101,17 @@ class SetiFileWriter:
                 str(record.total_appointments), str(record.stay_days),
                 record.poverty_level, record.funding_source
             ]
-        elif isinstance(record, ResourceAvailabilityD1):
+        elif isinstance(record, EmergencyProductionD1):
             fields = [
-                record.period, record.ipress_code, record.ugipress_code,
-                record.document_type, record.document_number, record.ups_code,
-                str(record.asistencial_hours), str(record.administrative_hours), 
-                str(record.other_hours)
+                record.period, record.ipress_code, record.ugipress_code, record.ups_code,
+                record.age_group, record.gender, str(record.total_patients),
+                str(record.total_appointments), record.poverty_level, record.funding_source
             ]
-        elif isinstance(record, ShiftProgrammingD2):
+        elif isinstance(record, EmergencyMorbidityD2):
             fields = [
-                record.period, record.ipress_code, record.ugipress_code,
-                record.document_type, record.document_number, record.ups_code,
-                record.shift_date, record.shift_type, str(record.hours_count)
+                record.period, record.ipress_code, record.ugipress_code, record.ups_code,
+                record.age_group, record.gender, record.icd10_code,
+                record.diagnosis_type, str(record.total_cases),
+                record.poverty_level, record.funding_source
             ]
         return "|".join(fields)

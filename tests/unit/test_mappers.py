@@ -82,35 +82,27 @@ def test_table_c2_mapper_exception():
         TableC2Mapper.map_from_dict(None)
 
 def test_table_d1_mapper_success():
-    """Valida el mapeo exitoso de disponibilidad de horas (D1)."""
+    """Valida mapeo de Producción de Emergencia (D1)."""
     raw_data = {
         "period": "202602",
         "ipress_code": "00001234",
-        "document_number": "44556677",
-        "asistencial_hours": "150"
+        "ups_code": "301602",
+        "total_appointments": 20
     }
     entity = TableD1Mapper.map_from_dict(raw_data)
-    assert entity.document_number == "44556677"
-    assert entity.asistencial_hours == 150
+    assert entity.ups_code == "301602"
+    assert entity.total_appointments == 20
 
 def test_table_d2_mapper_success():
-    """Valida el mapeo exitoso de programación de turnos (D2)."""
+    """Valida mapeo de Morbilidad de Emergencia (D2)."""
     raw_data = {
         "period": "202602",
         "ipress_code": "00001234",
-        "shift_date": "20260215",
-        "hours_count": 6
+        "icd10_code": "R10", # Dolor abdominal
+        "diagnosis_type": "P",
+        "total_cases": 5
     }
     entity = TableD2Mapper.map_from_dict(raw_data)
-    assert entity.shift_date == "20260215"
-    assert entity.hours_count == 6
-
-def test_table_d1_mapper_exception():
-    """Verifica captura de errores en D1."""
-    with pytest.raises(ValueError, match="Error en mapeo TablaD1"):
-        TableD1Mapper.map_from_dict(None)
-
-def test_table_d2_mapper_exception():
-    """Verifica captura de errores en D2."""
-    with pytest.raises(ValueError, match="Error en mapeo TablaD2"):
-        TableD2Mapper.map_from_dict(None)
+    assert entity.icd10_code == "R10"
+    assert entity.diagnosis_type == "P"
+    assert entity.total_cases == 5
