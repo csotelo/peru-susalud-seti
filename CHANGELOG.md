@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-02-16
+
+### Corregido
+- Alineación de nomenclaturas según Manual Técnico SUSALUD 2024.
+- **Tablas C1/C2**: Confirmadas como Hospitalización (Egresos y Estancia).
+- **Tablas D1/D2**: Re-asignadas a Emergencia (Producción y Morbilidad).
+- **Tabla J**: Identificada como Gastos (para futura implementación).
+
 ## [0.4.0] - 2026-02-16
 
 ### Añadido
