@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "peru-susalud-seti"
+version = "0.1.0"
+description = "Librería para generación de tramas SETI-IPRESS (SUSALUD) desde JSON"
+readme = "README.md"
+authors = [
+  { name = "Carlos Eduardo SOtelo Pinto", email = "carlos.sotelo.pinto@gmail.com" },
+]
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+]
+dependencies = [
+    "pydantic>=2.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/csotelo/peru-susalud-seti"
+"Bug Tracker" = "https://github.com/csotelo/peru-susalud-seti/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov=src/peru_susalud_seti --cov-report=term-missing --cov-fail-under=100"
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.coverage.run]
+branch = true
+source = ["src/peru_susalud_seti"]
+omit = [
+    "tests/*",
+    "**/__init__.py" # Opcional: a veces se omite, pero ya lo tienes al 100%
+]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError"
+]
