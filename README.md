@@ -121,33 +121,39 @@ data_c2 = [{
 }]
 service.generate_table("C2", data_c2, "./output")
 
-# --- EJEMPLO TABLA D1 (Horas RR.HH.) ---
+# --- EJEMPLO TABLA D1 (Producción en Emergencias) ---
+# Reporta el volumen de atenciones en la UPS de Emergencia
 data_d1 = [{
     "period": "202602",
     "ipress_code": "00001234",
     "ugipress_code": "00001234",
-    "document_type": "1",
-    "document_number": "44556677",
-    "ups_code": "301601",
-    "asistencial_hours": 150,
-    "administrative_hours": 10,
-    "other_hours": 0
+    "ups_code": "301602", # UPS Emergencia
+    "age_group": "05",     # Grupo etario
+    "gender": "1",
+    "total_patients": 15,
+    "total_appointments": 15,
+    "poverty_level": "3",
+    "funding_source": "4"
 }]
 service.generate_table("D1", data_d1, "./output")
 
-# --- EJEMPLO TABLA D2 (Turnos) ---
+# --- EJEMPLO TABLA D2 (Morbilidad en Emergencias) ---
+# Reporta los diagnósticos (CIE-10) atendidos en Emergencia
 data_d2 = [{
     "period": "202602",
     "ipress_code": "00001234",
     "ugipress_code": "00001234",
-    "document_type": "1",
-    "document_number": "44556677",
-    "ups_code": "301601",
-    "shift_date": "20260215",
-    "shift_type": "M",
-    "hours_count": 6
+    "ups_code": "301602",
+    "age_group": "05",
+    "gender": "1",
+    "icd10_code": "R10",   # Dolor Abdominal y Pélvico
+    "diagnosis_type": "P", # Presuntivo
+    "total_cases": 5,      # Cantidad de casos con este diagnóstico
+    "poverty_level": "3",
+    "funding_source": "4"
 }]
 service.generate_table("D2", data_d2, "./output")
+
 ```
 
 ---
@@ -161,6 +167,8 @@ service.generate_table("D2", data_d2, "./output")
 | **B2** | Emergencia | Atenciones de urgencia y destino del paciente. |
 | **C1** | Egresos Hospitalarios | Detalle de pacientes que egresan de hospitalización. |
 | **C2** | Estancia Hospitalaria | Días-estancia y permanencia de pacientes internados. |
+| **D1** | Producción en Emergencias | Atenciones y turnos en la UPS de Emergencia. |
+| **D2** | Morbilidad en Emergencias | Diagnósticos (CIE-10) reportados en Emergencia. |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).
 
