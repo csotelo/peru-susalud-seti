@@ -252,7 +252,6 @@ service.generate_table("J", data_j, "./output")
 | **I** | Referencias | Pacientes referidos a otras instituciones. |
 | **J** | Gastos (Ejecución) | Ejecución presupuestal por genérica de gasto. |
 
-> **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).
 
 ---
 
