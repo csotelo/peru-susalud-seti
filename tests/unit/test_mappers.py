@@ -13,6 +13,7 @@ from peru_susalud_seti.application.mappers import(
     TableD2Mapper,
     TableEMapper,
     TableFMapper,
+    TableGMapper,
     TableHMapper
 )
 
@@ -124,16 +125,6 @@ def test_table_e_mapper_success():
     assert entity.total_deliveries == 100
     assert entity.still_births == 2
 
-def test_table_h_mapper_success():
-    """Valida mapeo de Tabla H (Quirúrgica)."""
-    raw_data = {
-        "period": "202602",
-        "ipress_code": "00001234",
-        "total_interventions": 5
-    }
-    entity = TableHMapper.map_from_dict(raw_data)
-    assert entity.total_interventions == 5
-
 def test_table_f_mapper_success():
     """Valida mapeo de Tabla F (Vigilancia)."""
     raw_data = {
@@ -145,3 +136,25 @@ def test_table_f_mapper_success():
     entity = TableFMapper.map_from_dict(raw_data)
     assert entity.surveillance_code == "I01"
     assert entity.event_count == 3
+
+def test_table_g_mapper_success():
+    """Valida mapeo de Tabla G (Procedimientos)."""
+    raw_data = {
+        "period": "202602",
+        "ipress_code": "00001234",
+        "ups_code": "302301", # Laboratorio Clínico
+        "total_procedures": 50
+    }
+    entity = TableGMapper.map_from_dict(raw_data)
+    assert entity.ups_code == "302301"
+    assert entity.total_procedures == 50
+
+def test_table_h_mapper_success():
+    """Valida mapeo de Tabla H (Quirúrgica)."""
+    raw_data = {
+        "period": "202602",
+        "ipress_code": "00001234",
+        "total_interventions": 5
+    }
+    entity = TableHMapper.map_from_dict(raw_data)
+    assert entity.total_interventions == 5

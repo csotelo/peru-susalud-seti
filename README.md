@@ -175,6 +175,21 @@ data_f = [{
 }]
 service.generate_table("F", data_f, "./output")
 
+# --- EJEMPLO TABLA G (Procedimientos Médicos) ---
+data_g = [{
+    "period": "202602",
+    "ipress_code": "00001234",
+    "ugipress_code": "00001234",
+    "ups_code": "302301", # UPS Laboratorio Clínico
+    "age_group": "06",
+    "gender": "2",
+    "total_patients": 20,
+    "total_procedures": 85, # Un paciente puede tener múltiples exámenes
+    "poverty_level": "3",
+    "funding_source": "4"
+}]
+service.generate_table("G", data_g, "./output")
+
 # --- EJEMPLO TABLA H (Intervenciones Quirúrgicas) ---
 data_h = [{
     "period": "202602",
@@ -207,6 +222,7 @@ service.generate_table("H", data_h, "./output")
 | **D2** | Morbilidad en Emergencias | Diagnósticos (CIE-10) reportados en Emergencia. |
 | **E** | Partos | Reporte consolidado de partos y nacimientos (Vivos/Muertos). |
 | **F** | Vigilancia Institucional | Indicadores de seguridad, infecciones y eventos adversos. |
+| **G** | Producción de Procedimientos | Apoyo al diagnóstico (Laboratorio, Rayos X, etc.). |
 | **H** | Intervenciones Quirúrgicas | Producción de sala de operaciones (Intervenciones). |
 
 > **Próximamente:** Soporte para D1, D2 (RRHH) y H (Gastos).

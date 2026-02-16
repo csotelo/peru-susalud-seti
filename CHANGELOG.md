@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-02-16
+
+### Añadido
+- Soporte para **Tabla G (Producción de Procedimientos)**: Reporte de apoyo al diagnóstico y tratamiento (Laboratorio, Imágenes, etc.).
+- Sufijo oficial `TGG0`.
+
 ## [0.8.0] - 2026-02-16
 
 ### Añadido

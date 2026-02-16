@@ -160,7 +160,22 @@ class SurveillanceTableF:
     surveillance_code: str  # Código del indicador (ej. 'I01', 'E05')
     event_count: int        # Cantidad de eventos reportados    
 
-
+@dataclass(frozen=True)
+class ProceduresTableG:
+    """
+    Represents Table G: Procedures Production (Producción de Procedimientos).
+    Reports diagnostic and therapeutic support procedures by UPS.
+    """
+    period: str
+    ipress_code: str
+    ugipress_code: str
+    ups_code: str           # UPS que genera el procedimiento (ej. Laboratorio)
+    age_group: str
+    gender: str
+    total_patients: int     # Personas atendidas
+    total_procedures: int   # Cantidad de exámenes/procedimientos realizados
+    poverty_level: str
+    funding_source: str
 
 @dataclass(frozen=True)
 class SurgeryTableH:

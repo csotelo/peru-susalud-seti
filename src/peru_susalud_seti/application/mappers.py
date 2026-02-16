@@ -233,6 +233,25 @@ class TableFMapper:
         except (ValueError, TypeError, AttributeError) as e:
             raise ValueError(f"Error en mapeo TablaF: {str(e)}")        
 
+class TableGMapper:
+    """Translates raw dictionary data into ProceduresTableG entities."""
+    @staticmethod
+    def map_from_dict(data: Dict[str, Any]) -> ProceduresTableG:
+        try:
+            return ProceduresTableG(
+                period=str(data.get("period", "")).strip(),
+                ipress_code=str(data.get("ipress_code", "")).strip(),
+                ugipress_code=str(data.get("ugipress_code", "")).strip(),
+                ups_code=str(data.get("ups_code", "")).strip(),
+                age_group=str(data.get("age_group", "01")).zfill(2),
+                gender=str(data.get("gender", "1")),
+                total_patients=int(data.get("total_patients", 0)),
+                total_procedures=int(data.get("total_procedures", 0)),
+                poverty_level=str(data.get("poverty_level", "3")),
+                funding_source=str(data.get("funding_source", "4"))
+            )
+        except (ValueError, TypeError, AttributeError) as e:
+            raise ValueError(f"Error en mapeo TablaG: {str(e)}")
 
 class TableHMapper:
     """Translates raw dictionary data into SurgeryTableH entities."""
